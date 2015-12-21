@@ -1,0 +1,32 @@
+{
+  "name": "murmur3",
+  "description": "A murmur3 library for NodeJS.",
+  "keywords": [
+    "murmur3",
+    "hash"
+  ],
+  "main": "./index",
+  "version": "0.0.1",
+  "author": "Kurten Chan (https://github.com/kurten)",
+  "engines": {
+    "node": ">= 0.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kurten/node.murmur3.js.git"
+  },
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/kurten/node.murmur3.js/issues"
+  },
+  "scripts": {
+    "test": "node ./test/index.js"
+  },
+  "dependencies": {
+    "bindings": "1.0.0"
+  }
+}
