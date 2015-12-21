@@ -7,7 +7,10 @@
 
 #include <node.h>
 #include <node_buffer.h>
+
 #include <string.h>
+#include <stdlib.h>
+
 #include "MurmurHash3.h"
 
 using namespace node;
@@ -110,9 +113,9 @@ namespace {
             MurmurHash3_x86_128(*key, strlen(*key), seed, result);
         }
 
-        char bytes[16];
+        char *bytes = static_cast<char*>(malloc(16));
         memcpy(bytes, result, 16);
-        Local<Object> obj = Buffer::New(isolate, (char *)bytes, 16).ToLocalChecked();
+        Local<Object> obj = Buffer::New(isolate, bytes, 16).ToLocalChecked();
         args.GetReturnValue().Set(obj);
     }
 

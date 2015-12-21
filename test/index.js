@@ -8,4 +8,13 @@
  * Version: 1.0
  * Description:
  */
+'use strict';
+const bindings = require('../');
+const assert = require('assert');
 
+console.log(bindings.hash('hello1', 0));
+
+console.log(bindings.hash64('foo', 0, true));
+
+const buf = bindings.hash_bytes('foo', 0, true);
+console.log(buf, buf.toString(), buf.toString('base64'), buf.toString('hex'));
