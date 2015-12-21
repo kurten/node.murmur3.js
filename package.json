@@ -1,5 +1,5 @@
 {
-  "name": "murmur3",
+  "name": "node.murmur3.js",
   "description": "A murmur3 library for NodeJS.",
   "keywords": [
     "murmur3",
