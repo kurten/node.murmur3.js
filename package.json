@@ -6,7 +6,7 @@
     "hash"
   ],
   "main": "./index",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Kurten Chan (https://github.com/kurten)",
   "engines": {
     "node": ">= 4.0.0"
