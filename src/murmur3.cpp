@@ -12,6 +12,7 @@
 #include <stdlib.h>
 
 #include "MurmurHash3.h"
+#include "Crc32.h"
 
 using namespace node;
 
@@ -119,10 +120,30 @@ namespace {
         args.GetReturnValue().Set(obj);
     }
 
+    void calc(const FunctionCallbackInfo<Value>& args) {
+        Isolate* isolate = args.GetIsolate();
+
+        String::Utf8Value key(args[0]->ToString());
+        const uint8_t *p = (const uint8_t *) *key;
+
+        uint32_t crc = 0;
+        int len = strlen(*key);
+        crc = crc ^ ~0U;
+
+        while (len--) {
+            crc = (crc >> 8) ^ CRC32_TAB[(crc ^ *p++) & 0xFF];
+        }
+        crc = crc ^ ~0U;
+
+        Local<Number> num = Number::New(isolate, crc);
+        args.GetReturnValue().Set(num);
+    }
+
     void Init(Local<Object> exports) {
         NODE_SET_METHOD(exports, "hash", hash);
         NODE_SET_METHOD(exports, "hash64", hash64);
         NODE_SET_METHOD(exports, "hash_bytes", hash_bytes);
+        NODE_SET_METHOD(exports, "crc32", calc);
     }
 
     NODE_MODULE(murmur3, Init)
